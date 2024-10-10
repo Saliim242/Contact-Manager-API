@@ -82,8 +82,9 @@ The API will be accessible at http://localhost:3000.
 
 | Method | Endpoint             | Description            |
 | ------ | -------------------- | ---------------------- |
-| POST   | `/api/auth/register` | Register a new user    |
-| POST   | `/api/auth/login`    | Login an existing user |
+| POST   | `/api/users/auth/register` | Register a new user    |
+| POST   | `/api/users/auth/login`    | Login an existing user |
+| GET   | `/api/users/auth/current`    | Get user info with providing Token |
 
 #### Contacts
 
