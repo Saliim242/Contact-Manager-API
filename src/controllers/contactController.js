@@ -5,7 +5,7 @@ const Contact = require("../models/contactsModel");
 //@access Public
 
 const getContacts = asyncHandler(async (req, res) => {
-  const contacts = await Contact.find();
+  const contacts = await Contact.find({ user_id: req.user.id });
   res.status(200).json({ status: true, message: contacts });
 });
 
@@ -58,6 +58,7 @@ const createContact = asyncHandler(async (req, res) => {
     contactName,
     contactEmail,
     contactPhone,
+    user_id: req.user.id,
   });
 
   res.status(201).json({ status: true, message: contact });
@@ -73,6 +74,11 @@ const updateContact = asyncHandler(async (req, res) => {
   if (!contact) {
     res.status(404);
     throw new Error("Contact not found");
+  }
+
+  if (contact.user_id != req.user.id) {
+    res.status(403);
+    throw new Error("User does not have permession to updated other users");
   }
   const updatedContact = await Contact.findByIdAndUpdate(
     req.params.id,
@@ -94,6 +100,10 @@ const deleteContact = asyncHandler(async (req, res) => {
   if (!contact) {
     res.status(404);
     throw new Error("Contact not found");
+  }
+  if (contact.user_id != req.user.id) {
+    res.status(403);
+    throw new Error("User does not have permession to delete other users data");
   }
   const deletedContact = await Contact.findByIdAndDelete(contact);
   // Return a success response if deleted

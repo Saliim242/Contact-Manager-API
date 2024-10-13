@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const validateToken = asyncHandler(async (req, res, next) => {
   if (req.headers.Authorization || req.headers.authorization == undefined) {
     res.status(403);
-    throw new Error("No Token Provided ");
+    throw new Error("No Token Provided");
   }
   let token;
   const authHeaderToken =
