@@ -46,8 +46,9 @@ Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/yourusername/contact-manager-backend.git
-   cd contact-manager-backend
+   git clone https://github.com/Saliim242/Contact-Manager-API.git
+   cd Contact-Manager-API
+
    ```
    
 
